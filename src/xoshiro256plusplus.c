@@ -36,6 +36,11 @@ static inline uint64_t rotl(const uint64_t x, int k) {
 
 static uint64_t s[4];
 
+
+
+// Seeds the random number generator, recommend passing a constantly changing
+// value like time(NULL).
+// -- Miko
 void seedXoshiro(uint64_t seed) {
 	seedSplitMix(seed);
 	s[0] = nextSplitMix();

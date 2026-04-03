@@ -2,6 +2,8 @@
 #include <time.h>
 
 // p and r are only used for recursive sorting functions
+
+// implementation is bound to change
 double measureCpuTime(void sort(int *arr, int *p, int *r), int *input_arr, int *x, int *y)
 {
 	clock_t start, end;

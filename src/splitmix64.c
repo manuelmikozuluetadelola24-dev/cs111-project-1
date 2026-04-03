@@ -26,6 +26,12 @@ IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE. */
 
 static uint64_t x; /* The state can be seeded with any value. */
 
+
+
+// NOTE: DO NOT CALL THIS FUNCTION OR INCLUDE ITS HEADER FILE ANYWHERE
+// This code only serves to generate a seed for xoshiro256plusplus.c
+// and is called when xoshiro256 is seeded.
+// -- Miko
 void seedSplitMix(uint64_t seed) {
 	x = seed;
 }
