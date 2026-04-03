@@ -17,7 +17,6 @@ IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE. */
 
 #include <stdint.h>
 #include <splitmix64.h>
-#include <time.h>
 
 /* This is xoshiro256++ 1.0, one of our all-purpose, rock-solid generators.
    It has excellent (sub-ns) speed, a state (256 bits) that is large
@@ -37,8 +36,8 @@ static inline uint64_t rotl(const uint64_t x, int k) {
 
 static uint64_t s[4];
 
-void seedXoshiro() {
-	seedSplitMix(time(NULL));
+void seedXoshiro(uint64_t seed) {
+	seedSplitMix(seed);
 	s[0] = nextSplitMix();
 	s[1] = nextSplitMix();
 	s[2] = nextSplitMix();

@@ -1,13 +1,8 @@
 
 #include <stdio.h>
-#include <stdlib.h>
 #include <time.h>
 
-// this function uses a small library called srandq by
-// Alessandro Cudazo who goes by alessandrocuda in
-// github.
 
-// repository link: https://github.com/alessandrocuda/randq
 void inputRandom(unsigned long int* arr, unsigned long int *end)
 {
 	int size = end - arr;

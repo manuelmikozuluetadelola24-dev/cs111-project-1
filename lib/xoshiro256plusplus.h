@@ -7,7 +7,7 @@
 
 #include <stdint.h>
 
-void seedXoshiro();
+void seedXoshiro(uint64_t seed);
 
 uint64_t nextXoshiro(void);
 
