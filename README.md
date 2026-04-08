@@ -10,7 +10,9 @@
   
 # STATUS
   
-+ input (Finished) (UNTESTED)
++ input (Finished)
+	+ random input (functional)
+	+ user input (untested)
 + sorting (unfinished)
 + runtime measurement (finished, but bound to change)
   

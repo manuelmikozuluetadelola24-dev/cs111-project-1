@@ -1,15 +1,17 @@
 
+#include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
 #include <dynamic_arr.h>
+#include <xoshiro256plusplus.h>
 
 // TODO: change to call seedXoshiro and next() from xoshiro instead
-void inputRandom(DynamicUlongArr *arr)
+void inputRandom(DynamicUlongArr *input_arr)
 {
 	seedXoshiro(time(NULL));
-	for( size_t = 0; i < arr->cap; i++)
+	for( size_t i = 0; i < input_arr->cap; i++)
 	{
-		*(arr+i) = nextXoshiro();
+		*(input_arr->arr+i) = (unsigned long) nextXoshiro();
 	}
 }
 
@@ -18,7 +20,7 @@ void cleanInput(char* input_buffer)
 {
 	for(int i = 0; *(input_buffer+i) != '\0' ; i++)
 	{
-		if(*(input_buffer+)i == ' ' || *(input_buffer+i) == '\n')
+		if(*(input_buffer+i) == ' ' || *(input_buffer+i) == '\n')
 		{
 			for(int j = i; *(input_buffer+j) != '\0'; j++)
 			{
@@ -31,9 +33,9 @@ void cleanInput(char* input_buffer)
 // PROPOSED IMPLEMENTATION:
 // get input with fgets() and restrict input to digits 0-9
 // convert resulting string to unsigned long using strtoul() from stdlib.h
-void inputUser(DynamicUlongArr *arr);
+void inputUser(DynamicUlongArr *input_arr)
 {
-	const buffer_length = 24;
+	const int buffer_length = 24;
 	char* input_buffer = malloc(sizeof(char) * buffer_length);
 	
 	// 1 is true and 0 is false
@@ -42,7 +44,7 @@ void inputUser(DynamicUlongArr *arr);
 	do
 	{
 		puts("\ninput initial value of x: ");
-		fgets(input_buffer, buffer_length-1, STDIN);
+		fgets(input_buffer, buffer_length-1, stdin);
 
 		cleanInput(input_buffer);
 
@@ -59,13 +61,15 @@ void inputUser(DynamicUlongArr *arr);
 		}
 		
 	}
-	while(!input_valid)
+	while(!input_valid);
 
 	unsigned long sequence_start = strtoul(input_buffer, &input_buffer, 10);
 
-	for( size_t i = 0; i < arr->cap; i++ )
+	for( size_t i = 0; i < input_arr->cap; i++ )
 	{
-		*(arr->arr+i) = sequence_start+i;
-		arr->items++;
+		*(input_arr->arr+i) = sequence_start+i;
+		input_arr->items++;
 	}
+	
+	free(input_buffer);
 }

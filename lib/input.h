@@ -5,6 +5,9 @@
 
 #endif
 
-void inputRandom(int* arr, int *end);
+void inputRandom(DynamicUlongArr *arr);
 
-void inputUser(int* arr);
+void cleanInput(char* input_buffer);
+
+void inputUser(DynamicUlongArr *arr);
+

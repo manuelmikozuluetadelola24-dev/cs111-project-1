@@ -5,9 +5,10 @@
 
 #endif
 
-typedef struct DynamicUlongArr
+
+typedef struct 
 {
 	unsigned long int* arr;
 	size_t items;
 	size_t cap;
-} DynamicUlongArr
+} DynamicUlongArr;
