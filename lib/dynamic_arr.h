@@ -11,11 +11,3 @@ typedef struct DynamicUlongArr
 	size_t items;
 	size_t cap;
 } DynamicUlongArr
-
-void initDynamicArr(DynamicUlongArr* dynamic_arr, size_t init_size);
-
-void shrink(DynamicUlongArr* dynamic_arr);
-
-void expand(DynamicUlongArr* dynamic_arr);
-
-void updateSize(DynamicUlongArr* dynamic_arr);
