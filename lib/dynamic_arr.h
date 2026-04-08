@@ -5,7 +5,10 @@
 
 #endif
 
-
+// Contains the definition of the dynamic array
+// I didn't feel like adding functions for manipulating
+// the array.
+// Adjust the cap and items directly when updating array size or adding contents
 typedef struct 
 {
 	unsigned long int* arr;

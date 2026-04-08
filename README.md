@@ -3,9 +3,8 @@
   
 + Fix memory leak in merge()
 + Credit libraries used
-+ Write makefile build targets
-+ Test dynamic arrays
 + Test input functions in input.c
++ Implement copying of array before sorting
 + Implement sorting algorithms
   
 # STATUS
