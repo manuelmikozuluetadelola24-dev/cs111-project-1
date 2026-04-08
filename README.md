@@ -4,13 +4,13 @@
 + Fix memory leak in merge()
 + Credit libraries used
 + Write makefile build targets
-+ Implement dynamic arrays
-+ Finish input functions in input.c
++ Test dynamic arrays
++ Test input functions in input.c
 + Implement sorting algorithms
   
 # STATUS
   
-+ input (unfinished)
++ input (Finished) (UNTESTED)
 + sorting (unfinished)
 + runtime measurement (finished, but bound to change)
   
