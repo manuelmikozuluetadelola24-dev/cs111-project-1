@@ -70,7 +70,7 @@ int main()
 	// Code past this comment may be subject to change
 	DynamicUlongArr *arr_copy = copyArr(input_arr);
 
-	selectionSort(arr_copy);
+	insertionSort(arr_copy);
 
 	for(size_t i = 0; i < arr_copy->cap; i++)
 	{

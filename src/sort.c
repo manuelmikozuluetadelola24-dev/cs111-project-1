@@ -38,3 +38,19 @@ void selectionSort(DynamicUlongArr *arr_copy)
 		arr_copy->arr[min] = temp;
 	}
 }
+
+// DONE
+void insertionSort(DynamicUlongArr *arr_copy)
+{
+	for(size_t i = 1; i < arr_copy->cap; i++)
+	{
+		unsigned long int key = arr_copy->arr[i];
+		size_t j = i-1;
+		while( j >= 0 && arr_copy->arr[j] > key)
+		{
+			arr_copy->arr[j+1] = arr_copy->arr[j];
+			j--;
+		}
+		arr_copy->arr[j+1] = key;
+	}
+}

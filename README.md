@@ -13,7 +13,7 @@
 + sorting (in progress)
 	+ selection sort (functional)
 	+ bubble sort (not implemented)
-	+ insertion sort (not implemented)
+	+ insertion sort (functional)
 	+ merge sort (not implemented)
 	+ quick sort (not implemented)
 	+ heap sort (not implemented)
