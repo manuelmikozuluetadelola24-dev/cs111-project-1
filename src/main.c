@@ -21,19 +21,33 @@ int main()
 	puts("Select an option");
 	puts("(1) generate array of random values");
 	puts("(2) select a value and populate array with sequentially increasing value");
-	char selection = getchar();
-	switch(selection)
+	char* selection = malloc(sizeof(char)*3);
+	fgets(selection, 3, stdin);
+	enum valid_select {FALSE = 0, TRUE = 1};
+	int is_valid = FALSE;
+	do
 	{
-		case '1': 
+		
+		if(*selection == '1')
+		{
 			inputRandom(input_arr);
-			break;
-		case '2':
+			is_valid = TRUE;
+		}
+		else if(*selection == '2')
+		{
 			inputUser(input_arr);
-			break;
-		default:
+			is_valid = TRUE;
+		}
+		else
+		{
 			puts("invalid option");
-			break;
-	}
+			puts("input valid option");
+			is_valid = FALSE;
+			fgets(selection, 3, stdin);
+		}
+
+	} while(!is_valid);
+	free(selection);
 
 	for(size_t i = 0; i < input_arr->cap; i++)
 	{

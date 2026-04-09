@@ -42,29 +42,29 @@ void inputUser(DynamicUlongArr *input_arr)
 	// 1 is true and 0 is false
 	enum valid { FALSE = 0, TRUE = 1 };
 	int input_valid = FALSE;
+	unsigned long sequence_start = 0;
 	do
 	{
-		puts("\ninput initial value of x: ");
+		puts("input initial value of x: ");
 		fgets(input_buffer, buffer_length-1, stdin);
 
 		cleanInput(input_buffer);
 
-		for(int i = 0; *(input_buffer+i) != '\0' ; i++)
-		{
-			if(*(input_buffer+i) < '0' || *(input_buffer+i) > '9')
-			{
-				input_valid = FALSE;
-			}
-			else
-			{
-				input_valid = TRUE;
-			}
-		}
+		char* invalid_char;
+		sequence_start = strtoul(input_buffer, &invalid_char, 10);
 		
+		if(*(invalid_char) == '\0')
+		{
+			input_valid = TRUE;
+		}
+		else
+		{
+			puts("invalid value, only input digits 0-9");
+			input_valid = FALSE;
+		}
 	}
 	while(!input_valid);
-
-	unsigned long sequence_start = strtoul(input_buffer, &input_buffer, 10);
+	
 
 	for( size_t i = 0; i < input_arr->cap; i++ )
 	{
