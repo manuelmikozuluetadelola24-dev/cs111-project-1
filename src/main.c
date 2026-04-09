@@ -5,13 +5,31 @@
 #include <stdlib.h>
 #include <dynamic_arr.h>
 #include <input.h>
+#include <sort.h>
 
+// NOTE: DO NOT USE initArr ON AN ARRAY CREATED BY copyArr
+// 	 AND VICE VERSA IT WILL CREATE A MEMORY LEAK!!
+// use initArr for initializing the input array
 DynamicUlongArr *initArr(size_t size)
 {
 	DynamicUlongArr *new_arr = malloc(sizeof(DynamicUlongArr));
 	new_arr->cap = size;
 	new_arr->arr = malloc(sizeof(unsigned long int) * size);
 	return new_arr;
+}
+
+// Use copyArr when making a copy of input array
+DynamicUlongArr *copyArr(DynamicUlongArr *input_arr)
+{
+	DynamicUlongArr *arr_copy = malloc(sizeof(DynamicUlongArr));
+	arr_copy->cap = input_arr->cap;
+	arr_copy->items = input_arr->items;
+	arr_copy->arr = malloc(sizeof(unsigned long int) * input_arr->cap);
+	for(size_t i = 0; i < input_arr->cap; i++)
+	{
+		arr_copy->arr[i] = input_arr->arr[i];
+	}
+	return arr_copy;
 }
 
 int main()
@@ -49,10 +67,17 @@ int main()
 	} while(!is_valid);
 	free(selection);
 
-	for(size_t i = 0; i < input_arr->cap; i++)
+	// Code past this comment may be subject to change
+	DynamicUlongArr *arr_copy = copyArr(input_arr);
+
+	selectionSort(arr_copy);
+
+	for(size_t i = 0; i < arr_copy->cap; i++)
 	{
-		printf("%lu\n", *(input_arr->arr+i));
+		printf("%lu\n", arr_copy->arr[i]);
 	}
+	
+	printf("\n\nis sorted: %d\n\n", validateSort(arr_copy));
 
 	return 0;
 }

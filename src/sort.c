@@ -1,62 +1,40 @@
 
 #include <stdlib.h>
+#include <dynamic_arr.h>
 
-// This causes a memory leak but it shouldn't matter since
-// the program has a short runtime
-// TODO: fix memory leak (eventually)
-// PROPOSED SOLUTION
-// Create a function that allocates the same amount of memory
-// as the input array to an int pointer before calling mergesort.
-// Will require updating the function parameters and removing the
-// malloc calls but it shouldn't affect the implementation of
-// measureCpuTime().
-
-// 1/3 of this program's memory will be lost to this memory leak
-void *merge(int *arr, int *l_start, int *r_start, int *r_end)
+// Use this to check if an array is properly sorted in ascending order.
+int validateSort(DynamicUlongArr *arr_copy)
 {
-	int n1 = r_start - l_start++;
-	int n2 = r_end - r_start;
-	int *l_arr, *r_arr;
-	l_arr = malloc(sizeof(int) * n1++);
-	r_arr = malloc(sizeof(int) * n2++);
-	
-	for(i = 0; i < n1; i++)
+	enum sort_valid { FALSE = 0, TRUE = 1 };
+	int is_sorted = TRUE;
+
+	for(size_t i = 0; i < arr_copy->cap-1; i++)
 	{
-		*(l_arr+i) = *(arr + l_start + i - 1);
-	}
-	for(j = 0; j < n2; j++)
-	{
-		*(r_arr+j) = *(arr + r_start + j);
-	}
-	// I don't know what L[n1+1] = infinity is
-	i = 0;
-	j = 0;
-	for(k = 0; k < (r_end - l_start); k++)
-	{
-		if( *(l_arr+i) <= *(r_arr+j) )
+		if(arr_copy->arr[i] > arr_copy->arr[i+1])
 		{
-			*(arr+k) = *(l_arr + i);
-			i += 1;
-		}
-		else
-		{
-			*(arr+k) = *(l_arr+j);
-			j += 1;
+			is_sorted = false;
 		}
 	}
+
+	return is_sorted;
 }
 
-int *mergeSort(int *arr, int *start, int *end)
+// DONE
+void selectionSort(DynamicUlongArr *arr_copy)
 {
-	
-	if(start < end)
+	for(size_t i = 0; i < arr_copy->cap-1; i++)
 	{
-		// subtracting the start and end pointers
-		// should yield the same effect as adding
-		// the index of the start and end of the array
-		int *mid = (end - start) / 2;
-		mergeSort(arr, start, mid);
-		mergeSort(arr, mid++, end);
-		merge(arr, start, mid, end);
+		size_t min = i;
+	
+		for( size_t j = i+1; j < arr_copy->cap; j++)
+		{
+			if(arr_copy->arr[j] < arr_copy->arr[min])
+			{
+				min = j;
+			}
+		}
+		unsigned long int temp = arr_copy->arr[i];
+		arr_copy->arr[i] = arr_copy->arr[min];
+		arr_copy->arr[min] = temp;
 	}
 }

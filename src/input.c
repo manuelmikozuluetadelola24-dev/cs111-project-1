@@ -12,7 +12,7 @@ void inputRandom(DynamicUlongArr *input_arr)
 	seedXoshiro(time(NULL));
 	for( size_t i = 0; i < input_arr->cap; i++)
 	{
-		*(input_arr->arr+i) = (unsigned long) nextXoshiro();
+		input_arr->arr[i] = (unsigned long) nextXoshiro();
 		input_arr->items++;
 	}
 }
@@ -20,13 +20,13 @@ void inputRandom(DynamicUlongArr *input_arr)
 // Clean whitespaces and newline
 void cleanInput(char* input_buffer)
 {
-	for(int i = 0; *(input_buffer+i) != '\0' ; i++)
+	for(int i = 0; input_buffer[i] != '\0' ; i++)
 	{
-		if(*(input_buffer+i) == ' ' || *(input_buffer+i) == '\n')
+		if(input_buffer[i] == ' ' || input_buffer[i] == '\n')
 		{
-			for(int j = i; *(input_buffer+j) != '\0'; j++)
+			for(int j = i; input_buffer[j] != '\0'; j++)
 			{
-				*(input_buffer+j) = *(input_buffer+j+1);
+				input_buffer[j] = input_buffer[j+1];
 			}
 		}
 	}
@@ -51,6 +51,9 @@ void inputUser(DynamicUlongArr *input_arr)
 		cleanInput(input_buffer);
 
 		char* invalid_char;
+		
+		// strtoul converts every valid digit in a string to unsigned
+		// long ignoring whitespace, cleanInput may be redundant.
 		sequence_start = strtoul(input_buffer, &invalid_char, 10);
 		
 		if(*(invalid_char) == '\0')
@@ -68,7 +71,7 @@ void inputUser(DynamicUlongArr *input_arr)
 
 	for( size_t i = 0; i < input_arr->cap; i++ )
 	{
-		*(input_arr->arr+i) = sequence_start+i;
+		input_arr->arr[i] = sequence_start+i;
 		input_arr->items++;
 	}
 	

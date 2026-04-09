@@ -5,7 +5,7 @@
 
 #endif
 
-void *merge(int *arr, int *l_start, int *r_start, int *r_end);
+int validateSort(DynamicUlongArr *arr_copy);
 
-int *mergeSort(int *arr, int *start, int *end);
+void selectionSort(DynamicUlongArr *arr_copy);
 

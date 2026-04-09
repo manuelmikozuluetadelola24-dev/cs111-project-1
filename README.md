@@ -1,9 +1,8 @@
 
 # TODO
   
-+ Fix memory leak in merge()
++ prevent memory leakage in recursive sorting functions
 + Credit libraries used
-+ Implement copying of array before sorting
 + Implement sorting algorithms
   
 # STATUS
@@ -11,7 +10,13 @@
 + input (Finished)
 	+ random input (functional)
 	+ user input (functional)
-+ sorting (unfinished)
++ sorting (in progress)
+	+ selection sort (functional)
+	+ bubble sort (not implemented)
+	+ insertion sort (not implemented)
+	+ merge sort (not implemented)
+	+ quick sort (not implemented)
+	+ heap sort (not implemented)
 + runtime measurement (finished, but bound to change)
   
 # CREDITS

@@ -14,6 +14,8 @@ debug: $(SRC) $(LIB)
 test_input: src/main.c src/input.c src/splitmix64.c src/xoshiro256plusplus.c $(LIB)
 	$(CC) -o test src/main.c src/input.c src/splitmix64.c src/xoshiro256plusplus.c $(FLAG) $(DEBUG_FLAG)
 
+test_sort: src/main.c src/input.c src/splitmix64.c src/xoshiro256plusplus.c src/sort.c $(LIB)
+	$(CC) -o test src/main.c src/input.c src/sort.c src/splitmix64.c src/xoshiro256plusplus.c $(FLAG) $(DEBUG_FLAG)
 .PHONY: clean
 
 clean:
