@@ -25,7 +25,7 @@ DynamicUlongArr *copyArr(DynamicUlongArr *input_arr)
 	arr_copy->cap = input_arr->cap;
 	arr_copy->items = input_arr->items;
 	arr_copy->arr = malloc(sizeof(unsigned long int) * input_arr->cap);
-	for(size_t i = 0; i < input_arr->cap; i++)
+	for(size_t i = 0; i < input_arr->items; i++)
 	{
 		arr_copy->arr[i] = input_arr->arr[i];
 	}
@@ -70,9 +70,9 @@ int main()
 	// Code past this comment may be subject to change
 	DynamicUlongArr *arr_copy = copyArr(input_arr);
 
-	insertionSort(arr_copy);
+	bubbleSort(arr_copy);
 
-	for(size_t i = 0; i < arr_copy->cap; i++)
+	for(size_t i = 0; i < arr_copy->items; i++)
 	{
 		printf("%lu\n", arr_copy->arr[i]);
 	}

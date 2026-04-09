@@ -12,7 +12,7 @@
 	+ user input (functional)
 + sorting (in progress)
 	+ selection sort (functional)
-	+ bubble sort (not implemented)
+	+ bubble sort (functional)
 	+ insertion sort (functional)
 	+ merge sort (not implemented)
 	+ quick sort (not implemented)
