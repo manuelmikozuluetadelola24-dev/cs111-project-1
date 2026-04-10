@@ -3,6 +3,7 @@
 #include <dynamic_arr.h>
 
 // Use this to check if an array is properly sorted in ascending order.
+// note: will not work for heap sort
 int validateSort(DynamicUlongArr *arr_copy)
 {
 	enum sort_valid { FALSE = 0, TRUE = 1 };
@@ -70,5 +71,58 @@ void insertionSort(DynamicUlongArr *arr_copy)
 			j--;
 		}
 		arr_copy->arr[j+1] = key;
+	}
+}
+
+// heapSort FUNCTION
+void maxHeapify(DynamicUlongArr *arr_copy, size_t root, size_t length)
+{
+	size_t l_node = root * 2;
+	size_t r_node = (root * 2) + 1;
+
+	size_t max;
+	if( l_node <= length && arr_copy->arr[l_node-1] > arr_copy->arr[root-1])
+	{
+		max = l_node;
+	}
+	else
+	{
+		max = root;
+	}
+	
+	if( r_node <= length && arr_copy->arr[r_node-1] > arr_copy->arr[max-1])
+	{
+		max = r_node;
+	}
+
+	if( max != root )
+	{
+		unsigned long int temp = arr_copy->arr[root-1];
+		arr_copy->arr[root-1] = arr_copy->arr[max-1];
+		arr_copy->arr[max-1] = temp;
+		maxHeapify(arr_copy, max, length);
+	}
+}
+
+// heapSort FUNCTION
+void buildMaxHeap(DynamicUlongArr *arr_copy)
+{
+	size_t n = arr_copy->items;
+	for( size_t i = (n/2); i > 0 ; i-- )
+	{
+		maxHeapify(arr_copy, i, n);
+	}
+}
+
+// DONE
+void heapSort(DynamicUlongArr *arr_copy)
+{
+	buildMaxHeap(arr_copy);
+	for( size_t i = (arr_copy->items); i > 1 ; i --)
+	{
+		unsigned long int temp = arr_copy->arr[0];
+		arr_copy->arr[0] = arr_copy->arr[i-1];
+		arr_copy->arr[i-1] = temp;
+		maxHeapify(arr_copy, 1, i -1);
 	}
 }

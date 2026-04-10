@@ -9,7 +9,7 @@ test: $(SRC) $(LIB)
 	$(CC) -o test $(SRC) $(FLAG)
 
 debug: $(SRC) $(LIB)
-	$(CC) -o debug $(SRC) $(FLAG) $(DEBUG_FLAG)
+	$(CC) -o test $(SRC) $(FLAG) $(DEBUG_FLAG)
 
 test_input: src/main.c src/input.c src/splitmix64.c src/xoshiro256plusplus.c $(LIB)
 	$(CC) -o test src/main.c src/input.c src/splitmix64.c src/xoshiro256plusplus.c $(FLAG) $(DEBUG_FLAG)
@@ -19,4 +19,4 @@ test_sort: src/main.c src/input.c src/splitmix64.c src/xoshiro256plusplus.c src/
 .PHONY: clean
 
 clean:
-	rm debug test
+	rm test output.txt

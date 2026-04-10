@@ -32,9 +32,32 @@ DynamicUlongArr *copyArr(DynamicUlongArr *input_arr)
 	return arr_copy;
 }
 
+// NOTE: NOT FINISHED
+// TODO: PRINT RUNTIME OF EACH SORTING ALGORITHM TO FILE
+void outputToFile(DynamicUlongArr *input_arr, DynamicUlongArr *arr_copy)
+{
+	FILE *output = fopen("output.txt", "w");
+
+	fprintf(output, "\n ***INPUT ARRAY*** \n\n");
+	for( size_t i = 0 ; i < input_arr->items ; i++)
+	{
+		fprintf(output, "%lu\n", input_arr->arr[i]);
+	}
+	
+	fprintf(output, "\n ***SORTED ARRAY*** \n\n");
+	for( size_t i = 0 ; i < input_arr->items ; i++)
+	{
+		fprintf(output, "%lu\n", arr_copy->arr[i]);
+	}
+
+	fprintf(output, "\n\nSORTED IN ASCENDING ORDER: %d\n\n", validateSort(arr_copy));
+
+	fclose(output);
+}
+
 int main()
 {
-	DynamicUlongArr *input_arr = initArr(100);
+	DynamicUlongArr *input_arr = initArr(1000);
 	
 	puts("Select an option");
 	puts("(1) generate array of random values");
@@ -70,14 +93,10 @@ int main()
 	// Code past this comment may be subject to change
 	DynamicUlongArr *arr_copy = copyArr(input_arr);
 
-	bubbleSort(arr_copy);
+	heapSort(arr_copy);
+	outputToFile(input_arr, arr_copy);
 
-	for(size_t i = 0; i < arr_copy->items; i++)
-	{
-		printf("%lu\n", arr_copy->arr[i]);
-	}
-	
-	printf("\n\nis sorted: %d\n\n", validateSort(arr_copy));
-
+	free(input_arr);
+	free(arr_copy);
 	return 0;
 }

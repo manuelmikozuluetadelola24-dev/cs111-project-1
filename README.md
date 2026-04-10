@@ -16,8 +16,10 @@
 	+ insertion sort (functional)
 	+ merge sort (not implemented)
 	+ quick sort (not implemented)
-	+ heap sort (not implemented)
-+ runtime measurement (finished, but bound to change)
+	+ heap sort (functional)
++ output (in progress)
+	requires runtime measurement before full implementation
++ runtime measurement (rewrite in progress)
   
 # CREDITS
   
