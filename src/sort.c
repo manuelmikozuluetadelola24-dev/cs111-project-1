@@ -152,7 +152,7 @@ static size_t medianOfThree(DynamicUlongArr *arr_copy, size_t min, size_t max)
 	{
 		swapUlong(&arr_copy->arr[mid], &arr_copy->arr[max]);
 	}
-	return arr_copy->arr[mid];
+	return mid;
 
 }
 static size_t quickPartitions(DynamicUlongArr *arr_copy, size_t min, size_t max)
