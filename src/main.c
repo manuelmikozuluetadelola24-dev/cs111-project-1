@@ -14,6 +14,7 @@ DynamicUlongArr *initArr(size_t size)
 {
 	DynamicUlongArr *new_arr = malloc(sizeof(DynamicUlongArr));
 	new_arr->cap = size;
+	new_arr->items = 0;
 	new_arr->arr = malloc(sizeof(unsigned long int) * size);
 	return new_arr;
 }
@@ -51,6 +52,7 @@ void outputToFile(DynamicUlongArr *input_arr, DynamicUlongArr *arr_copy)
 	}
 
 	fprintf(output, "\n\nSORTED IN ASCENDING ORDER: %d\n\n", validateSort(arr_copy));
+	//fprintf(output, "TIME: %f seconds\n", measureCpuTime(quickSort, arr_copy->arr, NULL, NULL));
 
 	fclose(output);
 }
@@ -96,7 +98,9 @@ int main()
 	heapSort(arr_copy);
 	outputToFile(input_arr, arr_copy);
 
+	free (input_arr->arr);
 	free(input_arr);
+	free (arr_copy->arr);
 	free(arr_copy);
 	return 0;
 }

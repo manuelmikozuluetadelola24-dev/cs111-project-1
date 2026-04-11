@@ -13,7 +13,7 @@ int validateSort(DynamicUlongArr *arr_copy)
 	{
 		if(arr_copy->arr[i] > arr_copy->arr[i+1])
 		{
-			is_sorted = false;
+			is_sorted = FALSE; 
 		}
 	}
 
@@ -125,4 +125,73 @@ void heapSort(DynamicUlongArr *arr_copy)
 		arr_copy->arr[i-1] = temp;
 		maxHeapify(arr_copy, 1, i -1);
 	}
+}
+
+static void swapUlong (unsigned long int* x, unsigned long int* y)
+{
+	unsigned long int temp = *x;
+	*x = *y;
+	*y = temp;
+}
+
+static size_t medianOfThree(DynamicUlongArr *arr_copy, size_t min, size_t max)
+{
+	size_t mid = min+ (max-min)/2; 
+	if (arr_copy->arr[min] > arr_copy->arr[mid])
+	{
+		swapUlong(&arr_copy->arr[min], &arr_copy->arr[mid]);
+	}
+	if (arr_copy->arr[min] > arr_copy->arr[max])
+	{
+		swapUlong(&arr_copy->arr[min], &arr_copy->arr[max]);
+	}
+	if (arr_copy->arr[mid] > arr_copy->arr[max])
+	{
+		swapUlong(&arr_copy->arr[mid], &arr_copy->arr[max]);
+	}
+	return arr_copy->arr[mid];
+
+}
+static size_t quickPartitions(DynamicUlongArr *arr_copy, size_t min, size_t max)
+{
+	unsigned long int pivot = medianOfThree(arr_copy, min, max);
+	swapUlong(&arr_copy->arr[pivot], &arr_copy->arr[max]);
+	unsigned long int pivot_value = arr_copy->arr[max];
+	size_t i = min;
+
+
+	for (size_t j = min; j < max; j++)
+	{
+			if (arr_copy->arr[j] < pivot_value) 
+			{
+				swapUlong(&arr_copy->arr[i], &arr_copy->arr[j]);
+				i++;
+			}
+	}
+	swapUlong(&arr_copy->arr[i], &arr_copy->arr[max]);
+	return i;
+
+}
+
+static void quickSortRecursive(DynamicUlongArr *arr_copy, size_t min, size_t max) 
+{
+	if (min >= max)
+	{
+		return;
+	}
+	size_t indpivot = quickPartitions(arr_copy, min, max);
+	if (indpivot > 0)
+	{
+		quickSortRecursive(arr_copy, min, indpivot-1);
+	}
+	quickSortRecursive(arr_copy, indpivot+1, max);
+}
+
+void quickSort(DynamicUlongArr *arr_copy)
+{
+	if(arr_copy->items == 0)
+	{
+		return;
+	}
+	quickSortRecursive(arr_copy, 0, arr_copy->items-1);
 }

@@ -10,6 +10,7 @@
 void inputRandom(DynamicUlongArr *input_arr)
 {
 	seedXoshiro(time(NULL));
+	input_arr->items = 0;
 	for( size_t i = 0; i < input_arr->cap; i++)
 	{
 		input_arr->arr[i] = (unsigned long) nextXoshiro();
@@ -38,6 +39,7 @@ void inputUser(DynamicUlongArr *input_arr)
 {
 	const int buffer_length = 24;
 	char* input_buffer = malloc(sizeof(char) * buffer_length);
+	input_arr->items = 0; 
 	
 	// 1 is true and 0 is false
 	enum valid { FALSE = 0, TRUE = 1 };
