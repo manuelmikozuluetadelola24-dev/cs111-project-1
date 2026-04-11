@@ -6,6 +6,7 @@
 #include <dynamic_arr.h>
 #include <input.h>
 #include <sort.h>
+#include <analysis.h>
 
 // NOTE: DO NOT USE initArr ON AN ARRAY CREATED BY copyArr
 // 	 AND VICE VERSA IT WILL CREATE A MEMORY LEAK!!
@@ -35,7 +36,7 @@ DynamicUlongArr *copyArr(DynamicUlongArr *input_arr)
 
 // NOTE: NOT FINISHED
 // TODO: PRINT RUNTIME OF EACH SORTING ALGORITHM TO FILE
-void outputToFile(DynamicUlongArr *input_arr, DynamicUlongArr *arr_copy)
+void outputToFile(DynamicUlongArr *input_arr, DynamicUlongArr *arr_copy, double *runtimes)
 {
 	FILE *output = fopen("output.txt", "w");
 
@@ -53,7 +54,13 @@ void outputToFile(DynamicUlongArr *input_arr, DynamicUlongArr *arr_copy)
 
 	fprintf(output, "\n\nSORTED IN ASCENDING ORDER: %d\n\n", validateSort(arr_copy));
 	//fprintf(output, "TIME: %f seconds\n", measureCpuTime(quickSort, arr_copy->arr, NULL, NULL));
-	fprintf(output, "SORTING ALGORITHM USED: MERGE SORT"); //manual check, change dep on sort algo
+	fprintf(output, "\nRUNTIME OF EACH SORTING ALGORITHM\n\n");
+	fprintf(output, "\nSelection Sort:%5f\n", runtimes[0]);
+	fprintf(output, "Bubble Sort:%5f\n", runtimes[1]);
+	fprintf(output, "Insertion Sort:%5f\n", runtimes[2]);
+	fprintf(output, "Merge Sort:%5f\n", runtimes[3]);
+	fprintf(output, "Quick Sort:%5f\n", runtimes[4]);
+	fprintf(output, "Heap Sort:%5f\n", runtimes[5]);
 	fclose(output);
 }
 
@@ -93,14 +100,36 @@ int main()
 	free(selection);
 
 	// Code past this comment may be subject to change
-	DynamicUlongArr *arr_copy = copyArr(input_arr);
+	DynamicUlongArr *arr_copy_1 = copyArr(input_arr);
+	DynamicUlongArr *arr_copy_2 = copyArr(input_arr);
+	DynamicUlongArr *arr_copy_3 = copyArr(input_arr);
+	DynamicUlongArr *arr_copy_4 = copyArr(input_arr);
+	DynamicUlongArr *arr_copy_5 = copyArr(input_arr);
+	DynamicUlongArr *arr_copy_6 = copyArr(input_arr);
 
-	mergeSort(arr_copy);
-	outputToFile(input_arr, arr_copy);
+	double sort_runtimes[6];
+	sort_runtimes[0] = measureCpuTime(&selectionSort, arr_copy_1);
+	sort_runtimes[1] = measureCpuTime(&bubbleSort, arr_copy_2);
+	sort_runtimes[2] = measureCpuTime(&insertionSort, arr_copy_3);
+	sort_runtimes[3] = measureCpuTime(&mergeSort, arr_copy_4);
+	sort_runtimes[4] = measureCpuTime(&quickSort, arr_copy_5);
+	sort_runtimes[5] = measureCpuTime(&heapSort, arr_copy_6);
+
+	outputToFile(input_arr, arr_copy_6, sort_runtimes);
 
 	free (input_arr->arr);
 	free(input_arr);
-	free (arr_copy->arr);
-	free(arr_copy);
+	free (arr_copy_1->arr);
+	free(arr_copy_1);
+	free(arr_copy_2->arr);
+	free(arr_copy_2);
+	free(arr_copy_3->arr);
+	free(arr_copy_3);
+	free(arr_copy_4->arr);
+	free(arr_copy_4);
+	free(arr_copy_5->arr);
+	free(arr_copy_5);
+	free(arr_copy_6->arr);
+	free(arr_copy_6);
 	return 0;
 }

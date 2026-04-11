@@ -9,7 +9,7 @@
 // I didn't feel like adding functions for manipulating
 // the array.
 // Adjust the cap and items directly when updating array size or adding contents
-typedef struct 
+typedef struct DynamicUlongArr
 {
 	unsigned long int* arr;
 	size_t items;

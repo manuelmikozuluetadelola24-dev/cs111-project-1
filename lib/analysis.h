@@ -4,7 +4,7 @@
 #define __ANALYSIS_H_
 
 #endif
-#include <time.h>
+#include <dynamic_arr.h>
 
 // p and r are only used for recursive sorting functions
-double measureCpuTime(void sort(int *arr, int *p, int *r), int *input_arr, int *x, int *y);
+double measureCpuTime(void sort(DynamicUlongArr *copy_arr), DynamicUlongArr *arr_to_sort);

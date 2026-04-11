@@ -1,25 +1,23 @@
 
 # TODO
   
-+ prevent memory leakage in recursive sorting functions
 + Credit libraries used
-+ Implement sorting algorithms
   
 # STATUS
   
 + input (Finished)
 	+ random input (functional)
 	+ user input (functional)
-+ sorting (in progress)
++ sorting (finished)
 	+ selection sort (functional)
 	+ bubble sort (functional)
 	+ insertion sort (functional)
-	+ merge sort (not implemented)
-	+ quick sort (not implemented)
+	+ merge sort (functional)
+	+ quick sort (functional)
 	+ heap sort (functional)
-+ output (in progress)
++ output (finished)
 	requires runtime measurement before full implementation
-+ runtime measurement (rewrite in progress)
++ runtime measurement (finished)
   
 # CREDITS
   
