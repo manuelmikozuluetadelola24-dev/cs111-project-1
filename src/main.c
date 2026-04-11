@@ -34,8 +34,7 @@ DynamicUlongArr *copyArr(DynamicUlongArr *input_arr)
 	return arr_copy;
 }
 
-// NOTE: NOT FINISHED
-// TODO: PRINT RUNTIME OF EACH SORTING ALGORITHM TO FILE
+// Prints input array, sorted array, and runtime of each sorting algorithm
 void outputToFile(DynamicUlongArr *input_arr, DynamicUlongArr *arr_copy, double *runtimes)
 {
 	FILE *output = fopen("output.txt", "w");
@@ -66,7 +65,7 @@ void outputToFile(DynamicUlongArr *input_arr, DynamicUlongArr *arr_copy, double 
 
 int main()
 {
-	DynamicUlongArr *input_arr = initArr(1000);
+	DynamicUlongArr *input_arr = initArr(10000);
 	
 	puts("Select an option");
 	puts("(1) generate array of random values");

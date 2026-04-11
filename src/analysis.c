@@ -2,7 +2,9 @@
 #include <time.h>
 #include <dynamic_arr.h>
 
-// implementation is bound to change
+// Takes a function pointer of a sorting function, gets a value from clock
+// before running the function, then calling clock again to get the cpu time
+// after sorting
 double measureCpuTime(void sort(DynamicUlongArr *copy_arr), DynamicUlongArr *arr_to_sort)
 {
 	clock_t start, end;
