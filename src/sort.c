@@ -127,6 +127,7 @@ void heapSort(DynamicUlongArr *arr_copy)
 	}
 }
 
+// swap
 static void swapUlong (unsigned long int* x, unsigned long int* y)
 {
 	unsigned long int temp = *x;
@@ -187,6 +188,7 @@ static void quickSortRecursive(DynamicUlongArr *arr_copy, size_t min, size_t max
 	quickSortRecursive(arr_copy, indpivot+1, max);
 }
 
+// WORKING, NOT TESTED EXTENSIVELY
 void quickSort(DynamicUlongArr *arr_copy)
 {
 	if(arr_copy->items == 0)
