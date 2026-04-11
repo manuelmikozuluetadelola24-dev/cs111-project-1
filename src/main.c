@@ -53,7 +53,7 @@ void outputToFile(DynamicUlongArr *input_arr, DynamicUlongArr *arr_copy)
 
 	fprintf(output, "\n\nSORTED IN ASCENDING ORDER: %d\n\n", validateSort(arr_copy));
 	//fprintf(output, "TIME: %f seconds\n", measureCpuTime(quickSort, arr_copy->arr, NULL, NULL));
-
+	fprintf(output, "SORTING ALGORITHM USED: MERGE SORT"); //manual check, change dep on sort algo
 	fclose(output);
 }
 
@@ -95,7 +95,7 @@ int main()
 	// Code past this comment may be subject to change
 	DynamicUlongArr *arr_copy = copyArr(input_arr);
 
-	heapSort(arr_copy);
+	mergeSort(arr_copy);
 	outputToFile(input_arr, arr_copy);
 
 	free (input_arr->arr);

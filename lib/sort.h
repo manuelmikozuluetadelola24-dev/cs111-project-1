@@ -19,4 +19,6 @@ void buildMaxHeap(DynamicUlongArr *arr_copy);
 
 void quickSort(DynamicUlongArr *arr_copy);
 
+void mergeSort(DynamicUlongArr *arr_copy);
+
 void heapSort(DynamicUlongArr *arr_copy);
